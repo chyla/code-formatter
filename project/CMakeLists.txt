@@ -1,4 +1,6 @@
-add_subdirectory(unittests)
+if (BUILD_TESTS)
+    add_subdirectory(unittests)
+endif()
 
 set(TARGET_NAME code-formatter)
 set(TARGET_INCLUDE_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/include)

@@ -6,14 +6,16 @@ project(code-formatter
   LANGUAGES CXX
 )
 
+option(BUILD_TESTS "BUILD THE TESTS" OFF)
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
 include(${CMAKE_SOURCE_DIR}/cmake/cppcheck.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/clang_format.cmake)
 
-add_subdirectory(external/googletest)
-include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
-enable_testing()
+if (BUILD_TESTS)
+    include(${CMAKE_SOURCE_DIR}/cmake/google_test.cmake)
+endif()
 
 add_subdirectory(project)
