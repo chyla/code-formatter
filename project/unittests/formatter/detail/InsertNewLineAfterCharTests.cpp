@@ -10,6 +10,13 @@
 
 #include <gtest/gtest.h>
 
+namespace
+{
+
+constexpr char target = ';';
+
+}
+
 
 struct InsertNewLineAfterCharTests : ::testing::Test
 {
@@ -24,7 +31,6 @@ TEST_F(InsertNewLineAfterCharTests, ShouldNotInsertNewLineOnLineWithoutTarget)
         "first_line()"
     };
 
-    constexpr char target = ';';
     formatter::detail::insertNewLineAfterChar(content, target);
 
     const FileContent expected_content {
@@ -39,7 +45,6 @@ TEST_F(InsertNewLineAfterCharTests, ShouldNotInsertNewLineOnLineWithTargetAsLast
         "first_line();"
     };
 
-    constexpr char target = ';';
     formatter::detail::insertNewLineAfterChar(content, target);
 
     const FileContent expected_content {
@@ -54,7 +59,6 @@ TEST_F(InsertNewLineAfterCharTests, ShouldNotInsertNewLineOnLineWithTargetAsLast
         "first_line();   "
     };
 
-    constexpr char target = ';';
     formatter::detail::insertNewLineAfterChar(content, target);
 
     const FileContent expected_content {
@@ -69,7 +73,6 @@ TEST_F(InsertNewLineAfterCharTests, ShouldNotInsertNewLineOnLineWithTargetAsLast
         "first_line();\t\t"
     };
 
-    constexpr char target = ';';
     formatter::detail::insertNewLineAfterChar(content, target);
 
     const FileContent expected_content {
@@ -84,7 +87,6 @@ TEST_F(InsertNewLineAfterCharTests, InsertNewLineAfterTarget)
         "first_line();second_line()"
     };
 
-    constexpr char target = ';';
     formatter::detail::insertNewLineAfterChar(content, target);
 
     const FileContent expected_content {
@@ -102,7 +104,6 @@ TEST_F(InsertNewLineAfterCharTests, InsertNewLineAfterTargetInTheMiddleOfTheFile
         "last_line"
     };
 
-    constexpr char target = ';';
     formatter::detail::insertNewLineAfterChar(content, target);
 
     const FileContent expected_content {

@@ -19,7 +19,7 @@ namespace
 {
 
 bool
-hasNonWhiteChar(Line::const_iterator begin, Line::const_iterator end)
+hasNonWhiteChar(const Line::const_iterator begin, const Line::const_iterator end)
 {
     return std::any_of(begin, end, [](const auto &character){
         return character != ' ' and character != '\t';});
@@ -27,10 +27,10 @@ hasNonWhiteChar(Line::const_iterator begin, Line::const_iterator end)
 
 
 void
-insertLineAfterPosition(FileContent &content, Line &&line, FileContent::iterator pos)
+insertLineAfter(FileContent &content, Line &&line, FileContent::iterator current_line_it)
 {
-    auto next_line_it = pos;
-    next_line_it++;
+    auto &next_line_it = current_line_it;
+    ++next_line_it;
     content.insert(next_line_it, line);
 }
 
@@ -40,19 +40,19 @@ insertLineAfterPosition(FileContent &content, Line &&line, FileContent::iterator
 void
 insertNewLineAfterChar(FileContent &content, char character)
 {
-    for (auto line_it = content.begin(); line_it != content.end(); line_it++) {
-        auto &line = *line_it;
+    for (auto current_line_it = content.begin(); current_line_it != content.end(); ++current_line_it) {
+        auto &current_line = *current_line_it;
 
-        auto semicolon_position = find(line.begin(), line.end(), character);
-        if (semicolon_position != line.end()) {
-            auto after_semicolon = semicolon_position;
-            std::advance(after_semicolon, 1);
+        auto target_char_it = find(current_line.begin(), current_line.end(), character);
+        if (target_char_it != current_line.end()) {
+            auto after_target_char_it = target_char_it;
+            std::advance(after_target_char_it, 1);
 
-            if (hasNonWhiteChar(after_semicolon, line.end())) {
-                auto pos = std::distance(line.begin(), after_semicolon);
-                auto new_line = line.substr(pos);
-                line.erase(after_semicolon, line.end());
-                insertLineAfterPosition(content, std::move(new_line), line_it);
+            if (hasNonWhiteChar(after_target_char_it, current_line.end())) {
+                const auto split_pos = std::distance(current_line.begin(), after_target_char_it);
+                auto new_line = current_line.substr(split_pos);
+                current_line.erase(after_target_char_it, current_line.end());
+                insertLineAfter(content, std::move(new_line), current_line_it);
             }
         }
     }
