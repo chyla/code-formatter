@@ -8,14 +8,11 @@
 
 #pragma once
 
-#include <string>
-#include <list>
+#include "FileContent.hpp"
+
 
 namespace formatter
 {
-
-using Line = std::string;
-using FileContent = std::list<Line>;
 
 
 struct FormatterSettings

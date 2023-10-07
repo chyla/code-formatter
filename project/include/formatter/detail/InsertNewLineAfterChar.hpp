@@ -6,13 +6,14 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-#include "formatter/Formatter.hpp"
+#pragma once
 
-#include <gtest/gtest.h>
+#include <FileContent.hpp>
 
 
-struct FormatterTests : ::testing::Test
+namespace formatter::detail
 {
-    FormatterTests() = default;
-    virtual ~FormatterTests() = default;
-};
+
+void insertNewLineAfterChar(FileContent &content, char character);
+
+}

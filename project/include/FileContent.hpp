@@ -6,13 +6,10 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-#include "formatter/Formatter.hpp"
+#pragma once
 
-#include <gtest/gtest.h>
+#include <string>
+#include <list>
 
-
-struct FormatterTests : ::testing::Test
-{
-    FormatterTests() = default;
-    virtual ~FormatterTests() = default;
-};
+using Line = std::string;
+using FileContent = std::list<Line>;
