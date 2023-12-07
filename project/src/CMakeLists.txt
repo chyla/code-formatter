@@ -6,6 +6,7 @@ set(TARGET_NAME code-formatter)
 set(TARGET_SOURCES ${SOURCES_DIR}/main.cpp
                    ${SOURCES_DIR}/formatter/Formatter.cpp
                    ${SOURCES_DIR}/formatter/detail/InsertNewLineAfterChar.cpp
+                   ${SOURCES_DIR}/formatter/detail/UpdateIndentation.cpp
                    )
 
 add_executable(${TARGET_NAME} ${TARGET_SOURCES})

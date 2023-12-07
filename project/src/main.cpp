@@ -48,7 +48,13 @@ int main(int argc, char *argv[])
 
     auto file_content = readFile(input_file);
 
-    formatter::format(file_content);
+    formatter::FormatterOptions options;
+    options.indentation.increase_indentation_chars = {'{', '('};
+    options.indentation.decrease_indentation_chars = {'}', ')'} ;
+    options.indentation.num_of_spaces = 4;
+    options.indentation.reduce_indent_for_last_decrease_char = true;
+
+    formatter::format(file_content, options);
 
     for (const auto &line : file_content) {
         std::cout << line << '\n';

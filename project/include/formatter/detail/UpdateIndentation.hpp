@@ -8,14 +8,16 @@
 
 #pragma once
 
-#include "FileContent.hpp"
+#include <FileContent.hpp>
 #include "formatter/FormatterOptions.hpp"
 
+#include <set>
 
-namespace formatter
+
+namespace formatter::detail
 {
 
-void
-format(FileContent &content, const FormatterOptions &options);
+void updateIndentation(FileContent &content,
+                       const IndentationOptions &options);
 
 }

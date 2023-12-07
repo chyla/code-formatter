@@ -22,7 +22,7 @@ bool
 hasNonWhiteChar(const Line::const_iterator begin, const Line::const_iterator end)
 {
     return std::any_of(begin, end, [](const auto &character){
-        return character != ' ' and character != '\t';});
+        return not is_white_char(character);});
 }
 
 

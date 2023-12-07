@@ -13,3 +13,10 @@
 
 using Line = std::string;
 using FileContent = std::list<Line>;
+
+
+inline bool is_white_char(const char c)
+{
+    return c == ' '
+        or c == '\t';
+}

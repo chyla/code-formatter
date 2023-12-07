@@ -8,14 +8,16 @@
 
 #include <formatter/Formatter.hpp>
 #include <formatter/detail/InsertNewLineAfterChar.hpp>
+#include <formatter/detail/UpdateIndentation.hpp>
 
 namespace formatter
 {
 
 void
-format(FileContent &content)
+format(FileContent &content, const FormatterOptions &options)
 {
     detail::insertNewLineAfterChar(content, ';');
+    detail::updateIndentation(content, options.indentation);
 }
 
 }
